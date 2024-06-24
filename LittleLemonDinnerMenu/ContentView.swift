@@ -6,9 +6,12 @@ struct ContentView: View {
         NavigationStack {
             MenuItemsView(menuModel: menuModel)
             ScrollView {
-                MenuSection(title: "Food", items: menuModel.foodItems)
-                MenuSection(title: "Drinks", items: menuModel.drinkItems)
-                MenuSection(title: "Dessert", items: menuModel.dessertItems)
+                ForEach(MenuCategory.allCases, id: \.self) { menuCategory in
+                    let menuSection = menuModel.sections[menuCategory]
+                    if menuSection!.visible {
+                        MenuSectionView(title: menuSection!.name, items: menuSection!.items)
+                    }
+                }
             }
             .padding()
         }

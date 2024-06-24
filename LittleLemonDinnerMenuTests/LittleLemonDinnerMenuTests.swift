@@ -1,10 +1,3 @@
-//
-//  LittleLemonDinnerMenuTests.swift
-//  LittleLemonDinnerMenuTests
-//
-//  Created by Maciej Kędra on 20/06/2024.
-//
-
 import XCTest
 @testable import LittleLemonDinnerMenu
 

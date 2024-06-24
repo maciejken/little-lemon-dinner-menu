@@ -17,13 +17,37 @@ struct MenuItemsOptionView: View {
                 .padding()
             List {
                 Section("selected categories") {
-                    ForEach(MenuCategory.allCases, id: \.self) { category in
-                        Text(category.rawValue)
+                    ForEach(MenuCategory.allCases, id: \.self) { menuCategory in
+                        Button {
+                            menuModel.sections[menuCategory]!.visible.toggle()
+                        } label: {
+                            HStack {
+                                Text(menuCategory.rawValue)
+                                Spacer()
+                                if menuModel.sections[menuCategory]!.visible {
+                                    Image(systemName: "checkmark")
+                                }
+                            }
+                        }
+                        .foregroundColor(.black)
+                        
                     }
                 }
                 Section("sort by") {
-                    ForEach(SortBy.allCases, id: \.self) { sortBy in
-                        Text(sortBy.rawValue)
+                    ForEach(MenuSortBy.allCases, id: \.self) { sortBy in
+                        Button {
+                            menuModel.sortMenuItems(by: sortBy)
+                        } label: {
+                            HStack {
+                                Text(sortBy.rawValue)
+                                Spacer()
+                                if menuModel.sortBy == sortBy {
+                                    Image(systemName: "checkmark")
+                                }
+                            }
+                            .foregroundColor(.black)
+                        }
+                        
                     }
                 }
             }
